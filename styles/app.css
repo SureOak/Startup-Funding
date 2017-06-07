@@ -1,0 +1,142 @@
+* {
+  transform-origin: inherit ;
+}
+
+body {
+  background: white;
+  font-family: "Open Sans";
+  color: black;
+}
+
+div {
+  position: relative;
+}
+
+h1, h2, h3, h4, p { 
+  font-family: "Open Sans";
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+p { 
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Open Sans";
+}
+
+.progress-bar{
+  background-color: grey;
+}
+
+.progress {
+  margin: 0 auto;
+  height: 5px;
+  background-color: lightgrey;
+  box-shadow: 0px;
+  -webkit-box-shadow: 0px;
+}
+
+button {
+  background-color:  #444;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  color: white;
+  font-size: 12px;
+}
+
+#occupations { 
+  max-height: 700px;
+  overflow-y: scroll;
+}
+
+.axis g.tick line { 
+  opacity: .1;
+}
+
+.axis text {
+  font-size: 12px;
+  font-weight: 700;
+  fill: #41ab5d;
+}
+
+.d3-tip {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  font-weight: 100;
+  font-size: 12px;
+  border-radius: 2px;
+  z-index: 999;
+}
+
+.orange {
+  color: #41ab5d;
+}
+
+.blue {
+  color: steelblue;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+  fill: white;
+}
+
+.label {
+  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
+}
+
+.floatme, svg.floatme {
+  display: inline-block;
+  float: left;
+}
+
+button {
+  outline: none;
+  margin: 2px 2px;
+  padding: 2px 20px;
+}
+
+button:hover {
+  background-color: #41ab5d;
+}
+
+#industries {
+  margin-top: 20px;
+}

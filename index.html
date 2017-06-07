@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en">
+	<meta charset="utf-8">
+	<title>Startup Funding</title>
+
+	<!-- D3 Library --> <script src="lib/d3.v4.min.js"></script>
+    <!-- D3-Tip --> <script src="lib/d3-tip.js"></script>
+    <!-- TopoJson --> <script src="lib/topojson.min.js"></script>
+	<!-- Google Fonts --> <link href="styles/google-fonts.css" rel="stylesheet"> 
+	<!-- Jquery -->   <script src="lib/jquery-1.12.4.min.js"></script>
+  	<script src="lib/jquery-1.12.1-ui.js"></script>
+	<!-- Bootstrap--> <script src="lib/bootstrap.min.js"></script> <link rel="stylesheet" href="styles/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/app.css"/>
+</head>
+
+
+<body>
+	<div class="col-md-10 col-md-offset-1">
+		<h1>How are Startups Being Funded?</h1>
+
+		<div class="col-md-12">
+		<p> Which states do you think have the most well-funded startups? If we had to guess, states with high populations and dense cities would make sense; states like California and New York would jump immediately to mind. To normalize this sort of bias, the following map shows the total money raised in each state's startups divided by population. This map reveals a couple surprises to us - yes, California and New York continue to dominant in startups, but so do <span id="Colorado">Colorado</span>, <span id="Massachusetts">Massachusetts</span>, <span id="Connecticut">Connecticut</span>, and <span id="Oklahoma">Oklahoma</span>.</p>
+		<div id = "map"></div>
+		<div id = "states"></div>
+		</div>
+
+		<div class="col-md-12">
+		<p> Which industries have the most well-funded startups? Often we'll see that certain startups dominant industry scenes (i.e. AbbVie Inc. the easy winner of pharmeceuticals, Juno Therapeutics, Inc. and Moderna Therapeutics, Inc. dominanting the biotechnology industry). We can also see that industries with a large number of startups, like computers, have several companies that raise a lot of money. Choose the industries that you are interested in to see how much money startups have raised over the past two years.  </p>
+		<div id="buttons" class="col-md-12"></div>
+		<div id= "industries" class='col-md-12'></div>
+		</div>
+	</div>
+</body>
+
+	<script src="javascript/app.js"></script>
+</html>
