@@ -37,11 +37,13 @@ var w = $("#map").width();
 
 var svg = d3.select("#map").append("svg")
     .attr("width", w)
-    .attr("height", 500);
+    .attr("height", 500)
+    .style("overflow", "visible")
 
 var svgs = d3.select("#states").append("svg")
     .attr("width", w)
-    .attr("height", 280);
+    .attr("height", 280)
+    .style("overflow", "visible")
 
 var color = d3.scaleQuantile()
             .domain([0, 26, 76, 105, 151, 251, 600, 1000])
