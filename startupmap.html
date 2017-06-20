@@ -12,15 +12,38 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   <style>
-    .d3-tip {
-  padding: 10px;
+
+@font-face {
+  font-family: 'Effra';
+  src: url('styles/Effra_Std_Rg.ttf');
+}
+
+@font-face {
+  font-family: 'Effra Heavy';
+  src: url('styles/Effra_Std_He.ttf');
+}
+
+.d3-tip {
+  padding: 5px 15px;
   background: rgba(0, 0, 0, 0.85);
   color: white;
   font-weight: 100;
-  font-size: 12px;
+  font-family: "Effra";
+  font-size: 16px;
   border-radius: 2px;
   z-index: 999;
 }
+
+body {
+    font-family: "Effra";
+}
+
+h4 {
+    font-family: "Effra Heavy";
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
   </style>
 </head>
 
@@ -132,10 +155,10 @@ function showMap() {
 
     svg.append("text")
         .attr("x", 10)
-        .attr("y", 140)
+        .attr("y", 120)
         .style("font-weight", 700)
         .style("fill", "#41ab5d")
-        .style("font-size", 12)
+        .style("font-size", 16)
         .text("Dollars Raised per Person")
         .call(wrapt, 100)
 
@@ -152,7 +175,7 @@ function showMap() {
             .attr("x", 35)
             .attr("y", 145 + ((i+2)*20))
             .style("fill", "black")
-            .style("font-size", 12)
+            .style("font-size", 16)
             .text(function(){
                 if (i != 0) {
                     return "$" + val[i] + "-$" + (val[i-1]-1);
@@ -164,7 +187,7 @@ function showMap() {
 
     var tip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([0, 10])
+    .offset([-20, 20])
     .html(function(d) {
       return "<h4 style='color:#41ab5d'>" + d.properties.name +"</h4><p>Money Raised: $" + f(d.raised) + "<br> For Sale: $" + f(d.for_sale) + "<br>Money Raised per Person: $" + parseInt(d.raised/d.population) + "</p>";
     })
@@ -187,7 +210,9 @@ function showMap() {
     paths.enter()
       .append("path")
       .attr("class", "state")
-        .attr("id", function(d) { return d.properties.name})
+        .attr("id", function(d) { 
+            var temp = d.properties.name.replace(/\s+/g, '-');
+            return temp })
       .attr("d", function (state) {
           return pathGenerator(state);
       })
@@ -198,14 +223,19 @@ function showMap() {
         .on("mouseenter", function(d){
             tip.show(d);
             d3.selectAll("#" + d3.select(this).attr("id"))
-                .style("stroke", "#39FF14")
-                .style("stroke-width", 2)
+                .style("stroke", "black")
+                .style("stroke-width", 3)
+
+            d3.selectAll(".state:not(#" + d3.select(this).attr("id")+")")
+                .style("opacity", .5)
         })
         .on("mouseleave", function(d){
             tip.hide(d);
             d3.selectAll("#" + d3.select(this).attr("id"))
                 .style("stroke", "none")
                 .style("stroke-width", 0)
+            d3.selectAll(".state:not(#" + d3.select(this).attr("id")+")")
+                .style("opacity", 1)
         })
 
     if (w < 900) {
@@ -236,7 +266,10 @@ function showMap() {
         .data(states)
         .enter()
         .append("rect")
-            .attr("id", function(d) { return d.properties.name})
+            .attr("class", "state")
+            .attr("id", function(d) { 
+                var temp = d.properties.name.replace(/\s+/g, '-');
+                return temp })
             .attr("x", function(d){ 
                 if (state_names.indexOf(d.properties.name) < 25) {
                     return x1(d.properties.name)
@@ -257,14 +290,20 @@ function showMap() {
             .on("mouseenter", function(d){
             tip.show(d);
             d3.selectAll("#" + d3.select(this).attr("id"))
-                .style("stroke", "#39FF14")
-                .style("stroke-width", 2)
+                .style("stroke", "black")
+                .style("stroke-width", 3)
+
+             d3.selectAll(".state:not(#" + d3.select(this).attr("id")+")")
+                .style("opacity", .5)
         })
         .on("mouseleave", function(d){
             tip.hide(d);
             d3.selectAll("#" + d3.select(this).attr("id"))
                 .style("stroke", "none")
                 .style("stroke-width", 0)
+
+             d3.selectAll(".state:not(#" + d3.select(this).attr("id")+")")
+                .style("opacity", 1)
         })
 
      svgs.selectAll(".abbrev")
@@ -273,18 +312,19 @@ function showMap() {
         .append("text")
              .attr("x", function(d){ 
                 if (state_names.indexOf(d.properties.name) < 25) {
-                    return x1(d.properties.name) + 5
+                    return x1(d.properties.name) + 8
                 } else {
                     return x2(d.properties.name) + 5
                 }})
              .attr("y", function(d) {  
               if (state_names.indexOf(d.properties.name) < 25) {
-                return 180
+                return 185
               }else {
-                return 260
+                return 265
               }})
             .style("text-anchor", "middle")
-            .style("font-size", 10)
+            .style("font-family", "Effra Heavy")
+            .style("font-size", 14)
             .style("fill", "black")
             .text(function(d) {return d.abbrev})
     } else {
@@ -307,7 +347,10 @@ function showMap() {
         .data(states)
         .enter()
         .append("rect")
-            .attr("id", function(d) { return d.properties.name})
+            .attr("class", "state")
+            .attr("id", function(d) { 
+                var temp = d.properties.name.replace(/\s+/g, '-');
+                return temp })
             .attr("x", function(d){ return xScale(d.properties.name)})
             .attr("y", function(d) { return yScale(d.raised/d.population)})
             .attr("width", 10)
@@ -315,17 +358,23 @@ function showMap() {
             .style("fill", function(d){
             return color(d.raised/d.population)
         })
-            .on("mouseenter", function(d){
+           .on("mouseenter", function(d){
             tip.show(d);
             d3.selectAll("#" + d3.select(this).attr("id"))
-                .style("stroke", "#39FF14")
-                .style("stroke-width", 2)
+                .style("stroke", "black")
+                .style("stroke-width", 3)
+
+             d3.selectAll(".state:not(#" + d3.select(this).attr("id")+")")
+                .style("opacity", .5)
         })
         .on("mouseleave", function(d){
             tip.hide(d);
             d3.selectAll("#" + d3.select(this).attr("id"))
                 .style("stroke", "none")
                 .style("stroke-width", 0)
+
+             d3.selectAll(".state:not(#" + d3.select(this).attr("id")+")")
+                .style("opacity", 1)
         })
 
       svgs.selectAll(".abbrev")
@@ -335,7 +384,7 @@ function showMap() {
             .attr("x", function(d){ return xScale(d.properties.name) + 5})
             .attr("y", 192)
             .style("text-anchor", "middle")
-            .style("font-size", 10)
+            .style("font-size", 14)
             .style("fill", "black")
             .text(function(d) {return d.abbrev})
 
